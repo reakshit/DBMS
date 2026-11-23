@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { background: #EDEFF2; color: #101C33; }
+  body { @apply font-sans antialiased; font-variant-numeric: tabular-nums; }
+  h1, h2, h3 { @apply font-display; letter-spacing: 0.01em; }
+  :focus-visible { outline: 3px solid #1E4B8F; outline-offset: 2px; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-sm px-4 py-2.5 text-[15px] font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-ink text-white hover:bg-coach; }
+  .btn-board { @apply btn bg-board text-ink hover:brightness-95; }
+  .btn-ghost { @apply btn border border-ink/30 text-ink hover:bg-ink/5; }
+  .btn-danger { @apply btn border border-stop text-stop hover:bg-stop hover:text-white; }
+  .input { @apply w-full rounded-sm border border-ink/30 bg-white px-3 py-2.5 text-[15px] placeholder:text-ink/40; }
+  .label { @apply mb-1 block text-sm font-bold; }
+  .panel { @apply rounded-sm border border-rule bg-white; }
+  .th { @apply px-3 py-2 text-left text-sm font-bold text-ink/70; }
+  .td { @apply px-3 py-2.5 text-[15px]; }
+}
+
+.login-scene {
+  background:
+    radial-gradient(ellipse at 12% 18%, rgb(244 180 0 / 18%), transparent 34%),
+    radial-gradient(ellipse at 88% 82%, rgb(30 75 143 / 18%), transparent 35%),
+    #e8ebf0;
+}
+.login-card { animation: login-arrive 500ms cubic-bezier(.2,.8,.2,1) both; }
+.login-input { min-height: 3.25rem; border-color: #cbd1db; transition: border-color 160ms ease, box-shadow 160ms ease; }
+.login-input:focus { border-color: #1e4b8f; box-shadow: 0 0 0 4px rgb(30 75 143 / 12%); outline: none; }
+.login-role { min-height: 7rem; border: 1px solid #cbd1db; border-radius: 3px; padding: .8rem; text-align: left; transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease; }
+.login-role:hover { transform: translateY(-2px); }
+.login-role-user { background: linear-gradient(145deg, #edf7f4, #fff); color: #155e55; }
+.login-role-admin { background: linear-gradient(145deg, #f1effb, #fff); color: #59458d; }
+.login-role-user.login-role-selected { border-color: #17836f; background: linear-gradient(145deg, #d5f2e9, #f6fffb); box-shadow: 0 0 0 2px rgb(23 131 111 / 16%); }
+.login-role-admin.login-role-selected { border-color: #7356bd; background: linear-gradient(145deg, #e4ddfa, #fbfaff); box-shadow: 0 0 0 2px rgb(115 86 189 / 16%); }
+.login-role-icon { display: inline-flex; height: 1.8rem; width: 1.8rem; align-items: center; justify-content: center; margin-bottom: .35rem; border-radius: 9999px; background: rgb(255 255 255 / 75%); font-size: 1.05rem; }
+.login-submit { min-height: 3.25rem; justify-content: space-between; padding-inline: 1.1rem; }
+.login-submit span { font-size: 1.35rem; transition: transform 160ms ease; }
+.login-submit:hover span { transform: translateX(4px); }
+@keyframes login-arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Ticket stub edge: round notches on the left and right, like a punched ticket */
+.stub { position: relative; }
+.stub::before, .stub::after {
+  content: ''; position: absolute; top: var(--notch, 5.5rem); width: 20px; height: 20px; border-radius: 9999px;
+  background: #EDEFF2; border: 1px solid #CBD1DB;
+}
+.stub::before { left: -11px; clip-path: inset(0 0 0 50%); }
+.stub::after { right: -11px; clip-path: inset(0 50% 0 0); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .board-in { animation: board-in 420ms cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes board-in { from { transform: translateY(-10px); opacity: 0; } to { transform: none; opacity: 1; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .login-card { animation: none; }
+}

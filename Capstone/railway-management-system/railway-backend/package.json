@@ -1,0 +1,27 @@
+{
+  "name": "railway-backend",
+  "version": "1.0.0",
+  "description": "Express + MySQL backend for the railway reservation DBMS project",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed:passwords": "node scripts/set-sample-passwords.js",
+    "migrate:demo-payments": "node scripts/migrate-demo-payments.js",
+    "test:concurrency": "node scripts/concurrency-test.js",
+    "import:datameet": "node scripts/import-datameet.js"
+  },
+  "engines": {
+    "node": ">=18.11"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.11.0"
+  }
+}
